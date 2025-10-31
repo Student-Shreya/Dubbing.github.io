@@ -1,0 +1,43 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.pnp.loader.js
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.staging
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# Logs from npm, yarn, or debugging tools
+# Example: Chrome/browser logs that might leak data
+*.log
+
+# vscode
+.vscode/
+
+# IDE files
+*.iml
+
+# If you run Cypress or other E2E tests
+/cypress/videos
+/cypress/screenshots
+
+# Temporary files created by Webpack/Bundlers
+.cache/
+.eslintcache

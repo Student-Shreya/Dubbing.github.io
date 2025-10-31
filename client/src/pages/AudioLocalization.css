@@ -1,0 +1,41 @@
+.audio-localization-page {
+    padding: 40px 0;
+  }
+  
+  .localization-section {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .audio-localization-page .upload-box,
+  .audio-localization-page .localization-results-box {
+    min-height: 550px; /* Ensure similar height */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  /* Specific styling for the spinning icon */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .processing-indicator .spinning {
+    animation: spin 2s linear infinite;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .localization-section {
+      flex-direction: column;
+      align-items: center;
+    }
+    .audio-localization-page .upload-box,
+    .audio-localization-page .localization-results-box {
+      width: 100%;
+      min-width: unset;
+    }
+  }

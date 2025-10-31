@@ -1,0 +1,80 @@
+/* src/pages/TextTranslation.css */
+
+/* Define the specific page container class for any unique layout adjustments */
+.text-translation-page {
+  /* Padding helps center the content nicely on the page */
+  padding: 40px 0;
+  width: 100%;
+  /* No unique color/background needed here, as it inherits the body background */
+}
+
+/* Ensure the main translation section uses flexbox to position input and output side-by-side */
+.translation-section {
+  display: flex;
+  gap: 30px; /* Space between the input box and the results box */
+  flex-wrap: wrap; /* Allows stacking on smaller screens */
+  justify-content: center;
+}
+
+/* Style for the main text input area (reusing the 'upload-box' class structure) */
+.upload-box {
+  /* Inherits background and shadow from App.css, ensuring dark visibility */
+  /* Override flex behavior from App.css to take up appropriate space */
+  flex: 1;
+  min-width: 300px;
+  min-height: 550px; /* Maintain height alignment with results box */
+}
+
+/* Style for the results box (reusing the 'translation-results-box' class structure) */
+.translation-results-box {
+  /* Inherits background and shadow from App.css */
+  /* Override flex behavior from App.css to take up appropriate space */
+  flex: 1;
+  min-width: 300px;
+  min-height: 550px; /* Maintain height alignment with input box */
+  /* Ensure content aligns to the top inside the results box */
+  justify-content: flex-start;
+}
+
+/* Style for the large text area input */
+.source-text-area {
+  /* The core styling for size and color is handled inline in TextTranslation.js for quick adjustments, 
+     but we define the key properties here to override default browser styles */
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  transition: border-color 0.2s;
+  /* Ensuring scrollbar is available if text is long */
+  overflow-y: auto;
+}
+
+/* Focus state for the text area */
+.source-text-area:focus {
+  outline: none;
+  border-color: var(--accent-white) !important; /* White border on focus */
+}
+
+
+/* Adjustments for button container spacing, if needed */
+.upload-box .btn-primary {
+  margin-top: 20px;
+}
+
+/* Ensure the results text area uses the large font size set in the JSX */
+.translated-text-display {
+  /* Ensure the background and text color are high contrast */
+  background-color: var(--bg-deep-dark); 
+  color: var(--text-color-primary);
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .translation-section {
+      flex-direction: column;
+      align-items: stretch;
+  }
+  .upload-box, .translation-results-box {
+      width: 100%;
+      min-height: unset; /* Allow height to collapse on mobile */
+  }
+}

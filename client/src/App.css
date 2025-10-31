@@ -1,0 +1,459 @@
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- 1. GLOBAL VARIABLES (LIGHT BACKGROUND, DARK NAV, GRADIENT CARDS) --- */
+:root {
+  /* Main Colors */
+  --accent-light: #FFFFFF;      /* White (for navbar text, highlights on dark) */
+  --accent-dark: #64FFDA;       /* Cyan/Green (for success/checkmarks) */
+  --secondary-color: #5D3FD3;    /* Royal Purple (subtle accent for text) */
+  
+  --bg-main-light: #F0F2F5;     /* Very Light Gray (main body background) */
+  --bg-deep-dark: #0A192F;       /* Deepest Navy Blue (for solid navbar) */
+  
+  /* THIS IS THE GRADIENT FROM YOUR IMAGE - now used for content cards */
+  --gradient-card-bg: linear-gradient(135deg, #02203c 0%, #1e0a35 100%); 
+  
+  --text-color-dark: #232D4B;    /* Dark Blue (main text on light background) */
+  --text-color-dim: #555E7B;     /* Dim Blue (secondary text on light background) */
+  --text-color-on-dark: #CCD6F6; /* Light Blue-Gray (text on dark/gradient backgrounds) */
+  
+  --border-color-light: #D4DCE6; /* Light border/separator on white background */
+  --border-color-dark: #233554;  /* Darker border/separator on dark backgrounds */
+  --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --box-shadow-dark: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* --- 2. BASE STYLES --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color-dark); /* Main body text is dark */
+  background-color: var(--bg-main-light); /* Apply the white/light background */
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- 3. BUTTON STYLES --- */
+.btn-primary, .btn-secondary, .btn-success {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+/* Primary Button (now uses Deep Navy for prominence on light background) */
+.btn-primary {
+  background-color: var(--bg-deep-dark); /* Deep Navy Blue */
+  color: var(--accent-light);           /* White text */
+}
+
+.btn-primary:hover {
+  background-color: #1a3250; /* Slightly lighter navy on hover */
+}
+
+/* Secondary Button (now uses Deep Navy border, Dark text) */
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--bg-deep-dark); /* Deep Navy border */
+  color: var(--accent-white);            /* Deep Navy text */
+}
+
+.btn-secondary:hover {
+  background-color: rgba(10, 25, 47, 0.05); /* Subtle navy hover on light */
+}
+
+/* Success Button (remains Cyan/Green) */
+.btn-success {
+  background-color: var(--accent-dark); /* Cyan/Green */
+  color: var(--bg-deep-dark);           /* Deep Navy text */
+}
+
+.btn-success:hover {
+  background-color: #27ae60;
+}
+
+.btn-primary:disabled, .btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --- 4. TYPOGRAPHY AND LAYOUT --- */
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-color-dark); /* Dark text on light background */
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-color-dim);
+  text-align: center;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.back-btn {
+  background: none;
+  border: 1px solid var(--border-color-light); /* Light border */
+  color: var(--text-color-dark); /* Dark text */
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.2s;
+}
+
+.back-btn:hover {
+  background-color: rgba(0,0,0,0.05); /* Subtle dark hover */
+}
+
+
+/* --- 5. INFO BADGES AND INDICATORS --- */
+.info-badges {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background-color: rgba(100, 255, 218, 0.1); /* Keeps subtle accent-dark for this visual */
+  color: var(--accent-dark); /* Cyan/Green text for badge */
+  border: 1px solid var(--accent-dark);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Steps Indicator */
+.steps-indicator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.steps-indicator .step {
+  padding: 10px 20px;
+  border-radius: 50px;
+  background-color: var(--accent-light); /* White background for steps */
+  color: var(--text-color-dim);
+  font-weight: 500;
+  margin: 0 10px;
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--box-shadow-light);
+}
+
+.steps-indicator .step.active {
+  background-color: var(--bg-deep-dark); /* Active step background: Deep Navy */
+  color: var(--accent-light); /* Active step text: White */
+}
+
+.steps-indicator .step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -30px; 
+  width: 50px; 
+  height: 2px;
+  background-color: var(--border-color-light); /* Light line */
+  transform: translateY(-50%);
+  z-index: 0;
+}
+.steps-indicator .step.active:not(:last-child)::after {
+  background-color: var(--bg-deep-dark); /* Active step line: Deep Navy */
+}
+
+
+/* --- 6. UPLOAD AND RESULT BOXES (REUSABLE) --- */
+.translation-section, .localization-section {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap; 
+  justify-content: center;
+}
+
+.upload-box, .translation-results-box, .localization-results-box {
+  background: var(--gradient-card-bg); /* APPLY GRADIENT HERE */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: var(--box-shadow-dark); /* Dark shadow for gradient cards */
+  text-align: center;
+  flex: 1;
+  min-width: 300px;
+  min-height: 550px; /* Standardize height */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: var(--text-color-on-dark); /* Text color for content on gradient */
+}
+
+.drop-area {
+  border: 2px dashed var(--border-color-dark); /* Dark border for gradient */
+  border-radius: 8px;
+  padding: 40px 20px;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.drop-area:hover {
+  border-color: var(--accent-light); /* White border on hover */
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle white background on hover */
+}
+
+.drop-area .icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: var(--text-color-on-dark);
+}
+
+.drop-area p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--text-color-on-dark);
+}
+
+.drop-area small {
+  color: var(--text-color-on-dark);
+  margin-bottom: 15px;
+}
+
+.drop-area ul {
+  list-style: none;
+  text-align: left;
+  margin-top: 15px;
+  color: var(--text-color-on-dark);
+  font-size: 0.9rem;
+}
+
+.drop-area ul li {
+  margin-bottom: 5px;
+}
+
+/* File Details */
+.uploaded-file-details {
+  background-color: rgba(100, 255, 218, 0.05); /* Keeps subtle accent-dark */
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.uploaded-file-details h4 {
+  margin-bottom: 5px;
+  color: var(--text-color-on-dark);
+}
+
+.uploaded-file-details p {
+  font-size: 0.9rem;
+  color: var(--text-color-on-dark);
+  margin-bottom: 5px;
+}
+
+.language-detected, .file-ready-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--accent-dark); /* Keeps accent-dark for this visual */
+  margin-top: 10px;
+}
+
+.checkmark {
+  color: var(--accent-dark); 
+  font-size: 1.2rem;
+}
+
+/* Language Selector */
+.target-language-selector {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.target-language-selector label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-color-on-dark);
+}
+
+.target-language-selector select {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid var(--border-color-dark);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(--bg-deep-dark); /* Dark dropdown background */
+  color: var(--text-color-on-dark);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Custom arrow */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23CCD6F6" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+}
+
+/* Result Box Content */
+.translation-results-box h3, .localization-results-box h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--text-color-on-dark);
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.placeholder .icon {
+  font-size: 3rem;
+  color: var(--border-color-dark);
+  margin-bottom: 10px;
+}
+
+.placeholder p {
+  font-weight: 600;
+  color: var(--text-color-on-dark);
+  margin-bottom: 5px;
+}
+
+.placeholder small {
+  color: var(--text-color-on-dark);
+  font-size: 0.9rem;
+}
+
+.translated-text-display, .localized-text-display {
+  background-color: var(--bg-deep-dark);
+  border: 1px solid var(--border-color-dark);
+  padding: 15px;
+  border-radius: 8px;
+  text-align: left;
+  margin-bottom: 20px;
+  max-height: 250px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.translated-text-display p, .localized-text-display p {
+  white-space: pre-wrap;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-color-on-dark);
+}
+
+.text-to-speech-section {
+  margin-top: 30px;
+  border-top: 1px dashed var(--border-color-dark);
+  padding-top: 20px;
+  width: 100%;
+}
+
+.audio-player {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.audio-player audio {
+  width: 100%;
+  border-radius: 50px;
+  background-color: var(--bg-deep-dark);
+}
+
+/* Processing Indicator */
+.processing-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 15px;
+}
+
+.processing-indicator .icon {
+  font-size: 3.5rem;
+  color: var(--accent-light); 
+}
+
+.processing-indicator .spinning {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --- 7. RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+  .translation-section, .localization-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .upload-box, .translation-results-box, .localization-results-box {
+    width: 100%;
+    min-width: unset;
+    min-height: unset;
+  }
+}
