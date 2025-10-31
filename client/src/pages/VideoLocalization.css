@@ -1,0 +1,31 @@
+.video-localization-page {
+    padding: 40px 0;
+  }
+  
+  .localization-section {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .video-localization-page .upload-box,
+  .video-localization-page .localization-results-box {
+    min-height: 550px; /* Ensure similar height */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .localization-section {
+      flex-direction: column;
+      align-items: center;
+    }
+    .video-localization-page .upload-box,
+    .video-localization-page .localization-results-box {
+      width: 100%;
+      min-width: unset;
+    }
+  }
