@@ -1,57 +1,53 @@
 // src/pages/VideoLocalization.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { localizeVideo } from '../services/api'; 
 import './VideoLocalization.css'; 
-// import { localizeVideo } from '../services/api'; // (Uncomment when implementing API)
 
 function VideoLocalization() {
   const navigate = useNavigate();
   const [selectedVideoFile, setSelectedVideoFile] = useState(null);
   const [targetLanguage, setTargetLanguage] = useState('hi');
-  const [videoLocalizationResult, setVideoLocalizationResult] = useState(null);
+  const [sourceVideoLanguage, setSourceVideoLanguage] = useState('en'); 
+  const [localizationResult, setLocalizationResult] = useState(null);
   const [isProcessingVideo, setIsProcessingVideo] = useState(false);
 
-  // --- TARGET LANGUAGE LIST (22+ Languages) ---
+  // --- TARGETED LANGUAGE LIST (22+ Languages) ---
   const languageOptions = [
-    // Major Indian Languages (22 Official)
-    { code: 'hi', name: 'Hindi' },
+    // Indian Languages
+    { code: 'hi', name: 'Hindi' }, 
     { code: 'mr', name: 'Marathi' },
-    { code: 'bn', name: 'Bengali (Bangla)' },
+    { code: 'bn', name: 'Bengali (Bangla)' }, 
     { code: 'te', name: 'Telugu' },
-    { code: 'ta', name: 'Tamil' },
+    { code: 'ta', name: 'Tamil' }, 
     { code: 'gu', name: 'Gujarati' },
-    { code: 'kn', name: 'Kannada' },
+    { code: 'kn', name: 'Kannada' }, 
     { code: 'ml', name: 'Malayalam' },
-    { code: 'pa', name: 'Punjabi' },
+    { code: 'pa', name: 'Punjabi' }, 
     { code: 'or', name: 'Odia (Oriya)' },
-    { code: 'as', name: 'Assamese' },
+    { code: 'as', name: 'Assamese' }, 
     { code: 'ur', name: 'Urdu' },
-    { code: 'ks', name: 'Kashmiri' },
-    { code: 'sa', name: 'Sanskrit' },
-    { code: 'sd', name: 'Sindhi' },
-    { code: 'ne', name: 'Nepali' },
-    { code: 'kok', name: 'Konkani' },
-    { code: 'mni', name: 'Manipuri (Meitei)' }, 
-    { code: 'doi', name: 'Dogri' },             
-    { code: 'bo', name: 'Bodo' },               
-    { code: 'mai', name: 'Maithili' },          
-    { code: 'sat', name: 'Santali' },           
-
-    // Common International Languages
-    { code: 'en', name: 'English' },
+    // International Languages
+    { code: 'en', name: 'English' }, 
     { code: 'es', name: 'Spanish' },
-    { code: 'fr', name: 'French' },
-    { code: 'de', name: 'German' },
-    { code: 'zh', name: 'Chinese (Mandarin)' },
+    { code: 'fr', name: 'French' }, 
+    { code: 'de', 'name': 'German' },
+    { code: 'zh', 'name': 'Chinese (Mandarin)' },
   ];
   // ---------------------------------------------
 
+
+  // Helper to display full language name in the UI
+  const getLanguageName = (code) => {
+    const lang = languageOptions.find(opt => opt.code === code);
+    return lang ? lang.name : code;
+  };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setSelectedVideoFile(file);
-      setVideoLocalizationResult(null);
+      setLocalizationResult(null);
     }
   };
 
@@ -63,8 +59,7 @@ function VideoLocalization() {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
     if (file) {
-      setSelectedVideoFile(file);
-      setVideoLocalizationResult(null);
+      handleFileChange({ target: { files: [file] } });
     }
   };
 
@@ -73,41 +68,49 @@ function VideoLocalization() {
       alert('Please upload a video file first.');
       return;
     }
-    if (!targetLanguage) {
-      alert('Please select a target language for subtitles.');
+    if (!targetLanguage || !sourceVideoLanguage) {
+      alert('Please select both source and target languages.');
       return;
     }
 
     setIsProcessingVideo(true);
-    
-    // In a real application, you would call localizeVideo(selectedVideoFile, targetLanguage)
-    console.log(`Localizing video ${selectedVideoFile.name} with subtitles in ${targetLanguage}...`);
-    await new Promise(resolve => setTimeout(resolve, 8000)); 
+    setLocalizationResult(null);
 
-    setVideoLocalizationResult({
-      subtitlesGenerated: true,
-      subtitleContent: "[00:00:01] Hello, and welcome to SafeHorizon. [00:00:03] We make localization easy. [00:00:05] नमस्ते, और SafeHorizon में आपका स्वागत है। [00:00:07] हम स्थानीयकरण को आसान बनाते हैं।",
-      downloadLink: "https://example.com/localized-video-subtitles.srt"
-    });
-    setIsProcessingVideo(false);
+    try {
+      // Pass the video file, target language, and source language to the server
+      const result = await localizeVideo(selectedVideoFile, targetLanguage, sourceVideoLanguage);
+      
+      setLocalizationResult({
+        transcribedText: result.transcribedText,
+        translatedSubtitles: result.translatedSubtitles, // Subtitles text
+        audioUrl: result.audioUrl, // New translated audio track URL (if generated)
+        downloadLink: result.downloadLink,
+      });
+      
+    } catch (error) {
+        console.error('Video Localization Error:', error);
+        alert(`Video Localization failed. Server returned: ${error.message}`);
+    } finally {
+        setIsProcessingVideo(false);
+    }
   };
-  
-  // Helper to display full language name in the UI
-  const getLanguageName = (code) => {
-    const lang = languageOptions.find(opt => opt.code === code);
-    return lang ? lang.name : code;
+
+  // Function to create a downloadable Blob for the subtitles
+  const createSrtBlob = (subtitleText) => {
+    return new Blob([subtitleText], { type: 'text/plain;charset=utf-8' });
   };
+
 
   return (
     <div className="video-localization-page">
       <button className="back-btn" onClick={() => navigate('/')}>← Back to Home</button>
       <h2 className="page-title">AI-Powered Video Localization</h2>
       <p className="page-subtitle">
-        Generate accurate subtitles, translate content, and create professional localized videos with advanced AI technology.
+        Generate accurate subtitles and translated audio tracks using Gemini AI.
       </p>
 
       <div className="info-badges">
-        <span className="badge">🎬 HD Video Processing</span>
+        <span className="badge">🎬 Multimodal AI</span>
         <span className="badge">📝 Subtitle Generation</span>
         <span className="badge">🌐 Multi-language Support</span>
       </div>
@@ -120,23 +123,26 @@ function VideoLocalization() {
       </div>
 
       <div className="localization-section">
+        {/* === LEFT BOX: INPUT === */}
         <div className="upload-box" onDragOver={handleDragOver} onDrop={handleDrop}>
+          <h3 className="text-xl font-semibold mb-4 text-center" style={{color: 'var(--accent-white)'}}>
+            1. Upload Video File
+          </h3>
+
           <input
             type="file"
             id="video-upload"
             hidden
             onChange={handleFileChange}
-            accept=".mp4,.avi,.mov,.webm"
+            accept="video/mp4,video/avi,video/mov"
           />
           <label htmlFor="video-upload" className="drop-area">
             <span className="icon">▶️</span>
             <p>Drop your video file here</p>
             <small>or click to browse files</small>
             <ul>
-              <li>• MP4, AVI, MOV support</li>
-              <li>• WebM format included</li>
-              <li>• Maximum 500MB</li>
-              <li>• HD quality processing</li>
+              <li>• MP4, MOV support</li>
+              <li>• Maximum 500MB (GCS required for large files)</li>
             </ul>
           </label>
           {selectedVideoFile && (
@@ -149,8 +155,22 @@ function VideoLocalization() {
             </div>
           )}
 
-          <div className="target-language-selector">
-            <label htmlFor="subtitle-target-lang">Target Language for Subtitles</label>
+          <div className="target-language-selector mt-6">
+            <label htmlFor="source-video-lang">Source Video Language</label>
+            <select
+              id="source-video-lang"
+              value={sourceVideoLanguage}
+              onChange={(e) => setSourceVideoLanguage(e.target.value)}
+            >
+              <option value="">Select source language...</option>
+              {languageOptions.map(lang => (
+                <option key={lang.code} value={lang.code}>{lang.name}</option>
+              ))}
+            </select>
+          </div>
+          
+          <div className="target-language-selector mt-4">
+            <label htmlFor="subtitle-target-lang">Target Language (Translation)</label>
             <select
               id="subtitle-target-lang"
               value={targetLanguage}
@@ -162,33 +182,72 @@ function VideoLocalization() {
               ))}
             </select>
           </div>
-          <button className="btn-primary" onClick={handleLocalizeVideo} disabled={isProcessingVideo || !selectedVideoFile || !targetLanguage}>
+          <button className="btn-primary mt-6 w-full" onClick={handleLocalizeVideo} disabled={isProcessingVideo || !selectedVideoFile || !targetLanguage || !sourceVideoLanguage}>
             <span className="icon">⚙️</span> {isProcessingVideo ? 'Processing Video...' : 'Localize Video'}
           </button>
         </div>
 
+        {/* === RIGHT BOX: RESULTS === */}
         <div className="localization-results-box">
+          <h3 className="text-xl font-semibold mb-4 text-center" style={{color: 'var(--accent-white)'}}>
+            2. Localization Results
+          </h3>
+          
           {isProcessingVideo && (
             <div className="processing-indicator">
               <span className="icon spinning">⏳</span>
               <p>Processing Video</p>
-              <small>Generating subtitles and localizing content...</small>
+              <small>Transcribing audio and generating translated subtitles...</small>
             </div>
           )}
-          {videoLocalizationResult && !isProcessingVideo && (
+          {localizationResult && !isProcessingVideo && (
             <>
-              <h3>Localization Results</h3>
-              <p>Subtitles have been generated for your video in {getLanguageName(targetLanguage)}!</p>
-              <button className="btn-success">
-                <span className="icon">⬇️</span> Download Subtitles (SRT)
-              </button>
+              {/* Optional Audio Player for the new dubbed audio (if generated) */}
+              {localizationResult.audioUrl && (
+                  <div className="mb-4">
+                      <h4 className='text-sm mb-1' style={{color: 'var(--accent-white)', fontWeight: 600}}>Translated Audio Track</h4>
+                      <audio controls src={localizationResult.audioUrl} className="w-full">
+                          Your browser does not support the audio element.
+                      </audio>
+                  </div>
+              )}
+
+
+              <h4 className='text-sm mb-1' style={{color: 'var(--accent-white)', fontWeight: 600}}>
+                Generated Subtitles (Translated)
+              </h4>
+              <div className="localized-text-display mb-6 p-3 overflow-y-auto max-h-[150px]">
+                {/* Translated Subtitle Content Display */}
+                <pre className="text-sm" style={{whiteSpace: 'pre-wrap', fontFamily: 'monospace', color: 'var(--text-color-secondary)'}}>
+                    {localizationResult.translatedSubtitles || "Translation result not found. Check server logs."}
+                </pre>
+              </div>
+
+              <h4 className='text-sm mb-1' style={{color: 'var(--text-color-secondary)', fontWeight: 400}}>
+                Source Transcription
+              </h4>
+              <div className="localized-text-display mb-6 p-3 overflow-y-auto max-h-[100px]" style={{backgroundColor: 'var(--bg-deep-dark)'}}>
+                <pre className="text-sm" style={{whiteSpace: 'pre-wrap', fontFamily: 'monospace', color: 'var(--text-color-dim)'}}>
+                    {localizationResult.transcribedText || "Transcription not returned."}
+                </pre>
+              </div>
+
+
+              {/* Download Button - for the Subtitle File (.SRT) */}
+              <a 
+                href={URL.createObjectURL(createSrtBlob(localizationResult.translatedSubtitles))}
+                download={`subtitles_${targetLanguage}.srt`}
+                className="btn-success mt-4 w-full text-center"
+              >
+                <span className="icon">⬇️</span> Download Subtitles (.SRT)
+              </a>
             </>
           )}
-          {!videoLocalizationResult && !isProcessingVideo && (
+          {!localizationResult && !isProcessingVideo && (
             <div className="placeholder">
               <span className="icon">🎥</span>
               <p>Ready for Video Processing</p>
-              <small>Upload a video file and select a target language to generate professional subtitles</small>
+              <small>Upload a video file to generate professional subtitles.</small>
             </div>
           )}
         </div>

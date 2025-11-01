@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "ageless-accord-475504-h7",
+  "private_key_id": "3d2e5012bf4700906a9b487aa030c5460312ef51",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDA8MYh13BTCuft\nKa6hCMtRfoDVIVb2iOBAfVaXotUMNK3GysJLkQdyyJW6cSZTh/lzcD5g3hw9EqNf\nnIgnYMXLnbFNpL9+gXCr/Z5mEGm4K6Gtav8O0DM2CKuT9RUe365dFViNcyLqY92z\nO65JOAHkU7ToiC2CY8T0cvJf1nayX/y+Zbj8r7VVvXZznmqar78ZjK6f3qHiia4h\nA5ZwFaOEVSIIGRtG2wJj1Pcjap//l/9Lo3s52FyvRa/L/PSe1Y8bgKl160xRN+7l\nKtAA8ZsOG+D37/sSE5/d+mGWsrn2R5hFR4RVJq91J0J5ClvDjM0xbeoW19pv91Sv\nCSJL7aqvAgMBAAECggEAQ0Uvr6jv7uREjPoVeuwYB6f1v1nKelaq6ZFJ2cDaS1Eq\nrb8QE0zTrf+lxMWiuUkVflxKQ3ftnJWdBL8M8b3Z+O5YXVvtsGvtHupkie17Ds2X\np2FA4KdS06oeOI4g+QzAPJAuudLE/7gmGlHaqIiwkC1nTBP+2hFzIE/blfKum+4k\nd4cozIELfz/epK7TbbMKWX03Z9oe3sIOPOq6h5+DhrfXtgrLhY6DORm/hLv+BFve\nUykJK6Y7cFS1MVpZO06GY97OasypmRYPcgCgnf0TOQmn3iiiy8TcwdlBSxTS8tve\nA4XM9a7awrBrHLxwiS2mAUov3MfrerbxPxdX+TE58QKBgQDq+B0Il/4HE8+BlUZZ\nD0ZDPs+0cxiA5mvwZltOcJD1QuQy+sU/2ytmGtzXnbuQ9zWNlKiz4vWHp1AqL/Yf\nGP214flYckcG0gqIl8R9SV/NOfCzFNLsHNfW+bfQby1Kljvw3v7rzY91nV+rtMUv\nIdSQJ+UMD/IrGJeaS5y7uX5DDQKBgQDSNaajT7kNdirWaUX8Hhr91N9W7YvzwfWq\nj2xkvgtmr2CBMRsa5U+QujQOD85aVriAeC4QiQ/hZLjwT5n/KK11N8R2QlMKqKgS\nbqaf0Aqb55ustn7as0Vp8fkU515hGwAawfPkVpxxGooPwGYZL8zoJiVvPGKZ3kgi\nSg1Wlv4lqwKBgQDAtZlqUO4g89h+WOWHaYWg5UUIpFT2cwUX93rvTFc3MBNk1FMu\nWhyv81wo4s7QyE99vOzYDE5/YXPYBdoAC0kaASm1ppQmPeIxwPeAIcuWz+xfk7ah\nu84yHEDrjCNDRxAGL343+zGrrtSmSO5oB4EEchPi3rkpK1Q7UcRMGog5iQKBgCRe\nqf05ju/4UQMV5cjwQIVIbnfw07USCvo+pGdtxjU3BMB1iZYGtNR6kwUX0QEqXfPE\nV1v/CuNZdPIHI8LU++X7Bx/a69k9Qw8lW+jsqtk8ol+ol5wpRkpFVm46dcbhUAxR\nIGySW7DqAZcmF8Ql1BMafoGXdgvfPKXKIDKqH0DPAoGBAM+52xHVyHvV/0/rWuzX\nsM92kxXz/JICnkcebuWhi4sU9y3K64uWZvgE47Vyl0pRaJsNPSIS5CrYK9ibwGRY\nrmcgDb9F/JPw0Oetkxf9lRu1mqTKFUM8Us8cjdfr4DjPbPYcVnhoxXMabgqZOiUi\nxPTtRcuCOfYPlChue8gnwm37\n-----END PRIVATE KEY-----\n",
+  "client_email": "video-translator-service-accou@ageless-accord-475504-h7.iam.gserviceaccount.com",
+  "client_id": "100713760497922772716",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/video-translator-service-accou%40ageless-accord-475504-h7.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

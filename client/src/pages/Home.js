@@ -8,14 +8,14 @@ function Home() {
   return (
     <div className="home-page">
       <section className="hero-section">
-        <p className="hackathon-tag">Smart India Hackathon 2025</p>
+
         <h1>AI-Powered Multilingual <br /><span>Content Localization Engine</span></h1>
         <p className="hero-description">
           Transform educational content across 22+ languages with AI. Translate documents,
           localize audio, generate video subtitles, and integrate with LMS, NCVET, and MSDE platforms.
         </p>
         <div className="hero-actions">
-          <button className="btn-primary" onClick={() => navigate('/document-translation')}>
+          <button className="btn-primary" onClick={() => navigate('/text-translation')}>
             Start Translating <span className="arrow">→</span>
           </button>
           <button className="btn-secondary">
