@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "ageless-accord-475504-h7",
+  "private_key_id": "4fb2548ae7b01d71651e7f8e072cd9ba9d855d21",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCNKjLbPr6jnoyU\n3S06dM4vAD5bxFFiD1BKLOEtQn3/szdwJkf2DGSdWpW/RvGAutZ5czpfVjS1whgs\nFcQ3aOhmDVBn49g4i66e0+I5In8rQzFS0bIDiVu3rFYNCGzMb51m0qfr6kXupvzb\nsaS39UE5jJmGN8gm/UhRLQhBA1uFusysJ37Glc1Pen2vUQFf0AQhbs9YMEfnpk5W\n7qpcHPc1MSVsHjkElOo8FqlnqDVv9pDHDVmBjjW4knTWvpBpLW/KHjAatNKrCiYs\nbfg6ILzzwyWaYYJ7H+5KlAOTpsoAMB+ecWVknaIEzrJxpy2vw08R6n2eTRcIESOD\nmz7G3M+rAgMBAAECggEAG6qsGf1DptTBr8FjhmPzLxIIprqkyqe+sDL4lQLFqBJL\naL8P9oC6TX69/6WbWoQD2fzD8YB3RzI5w5YmhUeZ2Lp+SkZFD9wMhtN3MIR60RNT\nvOwdTAUlRSvRF6/RhwXPHyJlR978AsiWoUZBRs6aEHnmcwBGyaF1hXdieT97tgs6\nX0GfwUYjkBSS+ILADyY4W7XP5PUsd6uXFkXcSu2GgZZVSR504FHs6pxPXldMGQ/z\nqxbgR6dIKofPWurpUB5yF+6ILWjEG6NH+85BpoEQxvO9AHg4jPWsCpWmITzqZsQX\nZHEAu70H6ROsjrdUW9r5vXJxHN7a9aDoIWlsiho/oQKBgQDB0XuaRAmcVSbvyk9y\nwi//XPxt9ErZoCXEe2LFBRwB6B9gbUxv9GwkW/pOo6G0uRCjEyeILvogj98utTuA\nVV63bfVWCYYodvlXByDlHrMMyjkdlnyVu8/BqPiEaoQFZZzIOq8osZTrN+TP4HNf\nOp8iDtlLnnqhMH2fOEcu/C1UIQKBgQC6dDpJj4jbLoWt0mV35Y80+J87fx7F3i/k\ny1BfGczXOS6INSpq2FtzuGd+Zhk/tAmAECVowWlxymsloRzu6X1MiYyc4Yn/Os3w\ncC+ZFg2G3ZAhitSmpbzWKCLKxSR9PQBCcR1JfXR8hVnIh6hmTlRdyz9iL387qigl\nFsAEcM/qSwKBgQCYW9JsPFvJtu56xXCa56fPeAs/bDCCzu+hetTzx8ZygURZCtJx\nl5SDKIKl2t+9L1Wyu9XxqewaOL7a+sCha3qfeyLG1YnOuWfcT9A+DFn4DefEKI4b\nLp5swCVMAmdxzqTmiasztBU6qp+GAgzvqSd7IG0UkqoXmATIavcaKkZ/wQKBgQC1\nunrlH6UAHEPmu15ykagWtQxd7PSNXpXHpfJb/sWMMAuObmM9aEsaau1UYSbS1CM+\nUn5jr7+aTPRJ5NJSefjKFHacoabiwOngIzgBOWFNxb2pM6s4EeoPwWbHw4ZhGoea\nOq2U51YV19M+hBo6PLY2BNduV2TnPl2KaLYWne3IKQKBgQCiZzjwD34T6PnsxWzU\nFBLTmuaKi/+G9VfXHAzUH/MCev9Z1A5a1vO955FCbtpoj1kxyJzWZOChUmk8j0uo\nDtMwdoTaX62G3PFdeQzKlrHBS6fL/7Be98NH7NHNxq40T2qPwnyow1qHQViLJ1am\nwHTOQx3WH35IFRy/wqPew6byCw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "localization-api-access@ageless-accord-475504-h7.iam.gserviceaccount.com",
+  "client_id": "106060479366126706488",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/localization-api-access%40ageless-accord-475504-h7.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
